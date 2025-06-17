@@ -1,0 +1,256 @@
+/* Styles pour le header espion */
+.spy-header {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.95),
+    rgba(0, 20, 0, 0.95)
+  );
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--primary-green);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 255, 65, 0.1),
+      transparent
+    );
+    animation: sweep 3s infinite;
+  }
+
+  .header-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+
+    .header-left {
+      .agency-logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .logo-icon {
+          font-size: 3rem;
+          filter: drop-shadow(0 0 10px var(--primary-green));
+        }
+
+        .agency-info {
+          .game-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            text-shadow: 0 0 20px var(--primary-green);
+            letter-spacing: 2px;
+          }
+
+          .agency-name {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            letter-spacing: 1px;
+          }
+        }
+      }
+    }
+
+    .header-center {
+      text-align: center;
+
+      .classification-banner {
+        background: rgba(255, 0, 64, 0.1);
+        border: 1px solid var(--danger-red);
+        padding: 1rem;
+        border-radius: 10px;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 0, 64, 0.1) 10px,
+            rgba(255, 0, 64, 0.1) 20px
+          );
+          pointer-events: none;
+        }
+
+        .classification-text {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 0.5rem;
+
+          .classified-label {
+            background: var(--danger-red);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            font-weight: bold;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+          }
+
+          .code-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-white);
+            letter-spacing: 1px;
+          }
+        }
+
+        .security-level {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+
+          .security-dots {
+            color: var(--danger-red);
+            font-size: 0.8rem;
+          }
+
+          .clearance {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+          }
+        }
+      }
+    }
+
+    .header-right {
+      text-align: right;
+
+      .system-info {
+        .system-status {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+
+          .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-gray);
+
+            &.active {
+              background: var(--primary-green);
+              box-shadow: 0 0 10px var(--primary-green);
+              animation: pulse 2s infinite;
+            }
+          }
+
+          .status-text {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+          }
+        }
+
+        .current-agent {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          .agent-prefix {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+          }
+
+          .agent-code {
+            font-weight: bold;
+            color: var(--primary-green);
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .header-scanline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--primary-green),
+      transparent
+    );
+    animation: scanline-move 2s linear infinite;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes scanline-move {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsive header */
+@media (max-width: 1024px) {
+  .spy-header .header-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+
+    .header-left,
+    .header-right {
+      justify-self: center;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .spy-header .header-grid {
+    padding: 1rem;
+
+    .header-left .agency-logo {
+      flex-direction: column;
+      text-align: center;
+
+      .agency-info .game-title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .spy-header .header-grid .header-left .agency-logo .agency-info .game-title {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,113 @@
+/* Styles pour le sélecteur de temps */
+.time-selector {
+  margin-bottom: 2rem;
+
+  h3 {
+    color: var(--primary-green);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  .time-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    .time-option {
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid var(--text-gray);
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+
+      &:hover {
+        border-color: var(--primary-green);
+        transform: translateY(-2px);
+      }
+
+      &.selected {
+        border-color: var(--primary-green);
+        background: rgba(0, 255, 65, 0.1);
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+      }
+
+      .time-display {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 0.25rem;
+        margin-bottom: 0.5rem;
+
+        .time-value {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: var(--text-white);
+        }
+
+        .time-unit {
+          font-size: 0.8rem;
+          color: var(--text-gray);
+        }
+      }
+
+      .time-description {
+        font-size: 0.8rem;
+        color: var(--text-gray);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .custom-time {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--text-gray);
+
+    label {
+      display: block;
+      color: var(--primary-green);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .custom-time-input {
+      width: 100%;
+      padding: 0.75rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--primary-green);
+      border-radius: 5px;
+      color: var(--text-white);
+      font-family: inherit;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+      }
+    }
+  }
+}
+
+/* Responsive time selector */
+@media (max-width: 1024px) {
+  .time-selector .time-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .time-selector .time-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .time-selector .time-options {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,207 @@
+/* Styles pour le timer HUD */
+.timer-hud {
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--primary-green);
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 255, 65, 0.1),
+      transparent
+    );
+    animation: sweep 5s infinite;
+  }
+
+  .hud-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: relative;
+    z-index: 2;
+
+    .hud-left {
+      .agent-info {
+        .agent-label {
+          display: block;
+          font-size: 0.8rem;
+          color: var(--text-gray);
+          margin-bottom: 0.25rem;
+        }
+
+        .agent-name {
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: var(--primary-green);
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    .hud-center {
+      text-align: center;
+
+      .timer-display {
+        margin-bottom: 1rem;
+
+        .timer-status {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+
+          .status-icon {
+            font-size: 1.2rem;
+          }
+
+          .status-text {
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+          }
+        }
+
+        .timer-digits {
+          font-size: 3rem;
+          font-weight: bold;
+          font-family: "Courier New", monospace;
+          text-shadow: 0 0 20px currentColor;
+          animation: digital-flicker 0.1s infinite;
+        }
+      }
+
+      .timer-bar-container {
+        .timer-bar {
+          height: 8px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+          overflow: hidden;
+          border: 1px solid var(--text-gray);
+
+          .timer-progress {
+            height: 100%;
+            transition: width 1s linear;
+            border-radius: 3px;
+            position: relative;
+
+            &::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+              );
+              animation: progress-shine 2s infinite;
+            }
+
+            &.critical {
+              animation: danger-pulse 1s infinite;
+            }
+          }
+        }
+      }
+    }
+
+    .hud-right {
+      text-align: right;
+
+      .mission-status {
+        .status-label {
+          display: block;
+          font-size: 0.8rem;
+          color: var(--text-gray);
+          margin-bottom: 0.25rem;
+        }
+
+        .status-value {
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: var(--primary-green);
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
+@keyframes digital-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0.98;
+  }
+}
+
+@keyframes progress-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes danger-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor;
+  }
+}
+
+/* Responsive timer */
+@media (max-width: 1024px) {
+  .timer-hud .hud-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+
+    .hud-left,
+    .hud-right {
+      justify-self: center;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .timer-hud .hud-container {
+    padding: 1rem;
+
+    .hud-center .timer-display .timer-digits {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .timer-hud .hud-container .hud-center .timer-display .timer-digits {
+    font-size: 1.5rem;
+  }
+}
