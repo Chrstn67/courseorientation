@@ -2,7 +2,7 @@
   "name": "courseorientation",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://chrstn67.github.io/course-orientation-SAJ/",
+  "homepage": "https://chrstn67.github.io/courseorientation/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
