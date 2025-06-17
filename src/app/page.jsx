@@ -124,9 +124,7 @@ export default function SpyMission() {
                   <span className="control yellow"></span>
                   <span className="control green"></span>
                 </div>
-                <span className="terminal-title">
-                  M.O.L.S.H.E.I.M AGENCY - CLASSIFIED
-                </span>
+                <span className="terminal-title">SAJ AGENCY - CLASSIFIED</span>
               </div>
 
               <div className="terminal-content">
