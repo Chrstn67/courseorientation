@@ -130,9 +130,12 @@ export default function SpyMission() {
               <div className="terminal-content">
                 <div className="typing-text">
                   <h2>🕵️ BRIEFING DE MISSION</h2>
-                  <p className="mission-description">
-                    {gameData.config.description}
-                  </p>
+                  <div
+                    className="mission-description"
+                    dangerouslySetInnerHTML={{
+                      __html: gameData.config.description,
+                    }}
+                  />
 
                   <div className="agent-registration">
                     <label htmlFor="agentName">NOM DE CODE AGENT :</label>
@@ -234,9 +237,12 @@ export default function SpyMission() {
                   <div className="badge-glow"></div>
                   <h2>🎖️ MISSION ACCOMPLIE</h2>
                 </div>
-                <p className="success-message">
-                  {gameData.messages.missionComplete}
-                </p>
+                <p
+                  className="success-message"
+                  dangerouslySetInnerHTML={{
+                    __html: gameData.messages.missionComplete,
+                  }}
+                ></p>
                 <div className="agent-stats">
                   <div className="stat">
                     <span className="stat-icon">🕵️</span>

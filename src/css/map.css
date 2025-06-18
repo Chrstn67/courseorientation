@@ -120,6 +120,59 @@
     border: 1px solid var(--primary-green);
     z-index: 1000;
     min-width: 200px;
+    transition: all 0.3s ease;
+    max-width: calc(100% - 20px);
+
+    /* Toggle button */
+    .overlay-toggle {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: transparent;
+      border: none;
+      color: var(--primary-green);
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+
+      .close-icon {
+        opacity: 0.7;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    /* Collapsed state */
+    &.collapsed {
+      min-width: auto;
+      padding: 0.5rem;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(3px);
+      border-radius: 20px;
+
+      .overlay-toggle {
+        position: relative;
+        top: 0;
+        right: 0;
+      }
+
+      .collapsed-content {
+        display: flex;
+        align-items: center;
+      }
+
+      .mini-status {
+        color: var(--primary-green);
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+    }
 
     .coordinates {
       display: flex;
@@ -129,6 +182,7 @@
       color: var(--primary-green);
       font-family: "Courier New", monospace;
       margin-bottom: 0.5rem;
+      padding-right: 20px; /* Space for close button */
     }
 
     .location-status {
@@ -149,6 +203,11 @@
         display: block;
         color: var(--warning-orange);
         font-weight: bold;
+      }
+
+      .hidden-target {
+        display: block;
+        color: var(--text-gray);
       }
     }
   }
@@ -366,11 +425,41 @@
     .spy-map {
       height: 300px;
     }
+
+    .map-overlay {
+      min-width: auto;
+      max-width: 180px;
+      font-size: 0.75rem;
+
+      &.collapsed {
+        min-width: auto;
+        max-width: 100px;
+      }
+    }
   }
 }
 
 @media (max-width: 480px) {
-  .intel-map-container .spy-map {
-    height: 250px;
+  .intel-map-container {
+    .spy-map {
+      height: 250px;
+    }
+
+    .map-overlay {
+      bottom: 10px;
+      right: 10px;
+      min-width: auto;
+
+      .coordinates span {
+        font-size: 0.7rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .location-status {
+        font-size: 0.7rem;
+      }
+    }
   }
 }

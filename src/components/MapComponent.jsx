@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import "../css/map.css";
+import { X } from "lucide-react";
 
 export default function MapComponent({
   missions,
@@ -22,6 +23,7 @@ export default function MapComponent({
     level: 2,
     text: "SIGNAL MOYEN",
   });
+  const [isOverlayCollapsed, setIsOverlayCollapsed] = useState(false);
 
   // Fonction pour calculer la distance entre deux points (en mètres)
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
@@ -380,6 +382,10 @@ export default function MapComponent({
     return bars;
   };
 
+  const toggleOverlay = () => {
+    setIsOverlayCollapsed(!isOverlayCollapsed);
+  };
+
   return (
     <div className="intel-map-container">
       <div className="map-header">
@@ -419,34 +425,58 @@ export default function MapComponent({
 
       <div ref={mapRef} className="spy-map"></div>
 
-      <div className="map-overlay">
-        <div className="coordinates">
-          <span>CARTE - LAT: {mapCoordinates[0].toFixed(4)}</span>
-          <span>CARTE - LON: {mapCoordinates[1].toFixed(4)}</span>
-          {userPosition && (
-            <>
-              <span>GPS - LAT: {userPosition[0].toFixed(4)}</span>
-              <span>GPS - LON: {userPosition[1].toFixed(4)}</span>
-            </>
+      <div className={`map-overlay ${isOverlayCollapsed ? "collapsed" : ""}`}>
+        <button
+          onClick={toggleOverlay}
+          className="overlay-toggle"
+          aria-label={
+            isOverlayCollapsed ? "Afficher les détails" : "Réduire les détails"
+          }
+        >
+          {isOverlayCollapsed ? (
+            <div className="collapsed-content">
+              <span className="mini-status">
+                {userPosition &&
+                  `📍 ${
+                    signalStrength.distance ? `${signalStrength.distance}m` : ""
+                  }`}
+              </span>
+            </div>
+          ) : (
+            <X className="close-icon" size={16} />
           )}
-        </div>
-        <div className="location-status">
-          <span
-            className={`status-indicator ${
-              locationStatus === "POSITION VERROUILLÉE" ? "active" : ""
-            }`}
-          >
-            📍 {locationStatus}
-          </span>
-          {signalStrength.distance && showMapHint && (
-            <span className="distance-indicator">
-              🎯 Distance: {signalStrength.distance}m
-            </span>
-          )}
-          {!showMapHint && (
-            <span className="hidden-target">🔒 CIBLE CACHÉE</span>
-          )}
-        </div>
+        </button>
+        {!isOverlayCollapsed && (
+          <>
+            <div className="coordinates">
+              <span>CARTE - LAT: {mapCoordinates[0].toFixed(4)}</span>
+              <span>CARTE - LON: {mapCoordinates[1].toFixed(4)}</span>
+              {userPosition && (
+                <>
+                  <span>GPS - LAT: {userPosition[0].toFixed(4)}</span>
+                  <span>GPS - LON: {userPosition[1].toFixed(4)}</span>
+                </>
+              )}
+            </div>
+            <div className="location-status">
+              <span
+                className={`status-indicator ${
+                  locationStatus === "POSITION VERROUILLÉE" ? "active" : ""
+                }`}
+              >
+                📍 {locationStatus}
+              </span>
+              {signalStrength.distance && showMapHint && (
+                <span className="distance-indicator">
+                  🎯 Distance: {signalStrength.distance}m
+                </span>
+              )}
+              {!showMapHint && (
+                <span className="hidden-target">🔒 CIBLE CACHÉE</span>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { gameData } from "../data.jsx";
 import "../css/mission.css";
 
@@ -19,6 +19,14 @@ export default function MissionComponent({
   const [feedback, setFeedback] = useState("");
   const [attempts, setAttempts] = useState(0);
   const [isDecrypting, setIsDecrypting] = useState(false);
+
+  // Auto-scroll to top when mission changes
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [missionNumber]);
 
   const dangerLevel = gameData.dangerLevels[mission.dangerLevel];
 
@@ -103,15 +111,14 @@ export default function MissionComponent({
               )}
             </div>
           </div>
+          <div className="objective-box">
+            <h4>🎯 OBJECTIF :</h4>
+            <p>{mission.missionObjective}</p>
+          </div>
 
           <div className="mission-briefing">
-            <h3>📋 {gameData.messages.missionBriefing}</h3>
+            <h3>{gameData.messages.missionBriefing}</h3>
             <p className="briefing-text">{mission.briefing}</p>
-
-            <div className="objective-box">
-              <h4>🎯 OBJECTIF :</h4>
-              <p>{mission.missionObjective}</p>
-            </div>
           </div>
 
           <div className="encryption-section">

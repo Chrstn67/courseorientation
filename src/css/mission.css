@@ -166,6 +166,25 @@
         }
       }
 
+      .objective-box {
+        background: rgba(0, 100, 255, 0.1);
+        border: 1px solid var(--primary-blue);
+        padding: 1.5rem;
+        border-radius: 10px;
+        border-left: 4px solid var(--primary-blue);
+        margin-bottom: 2rem;
+
+        h4 {
+          color: var(--primary-blue);
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+        }
+
+        p {
+          color: var(--text-white);
+          margin: 0;
+        }
+      }
       .mission-briefing {
         margin-bottom: 2rem;
 
@@ -180,25 +199,6 @@
           line-height: 1.6;
           color: var(--text-white);
           margin-bottom: 1.5rem;
-        }
-
-        .objective-box {
-          background: rgba(0, 100, 255, 0.1);
-          border: 1px solid var(--primary-blue);
-          padding: 1.5rem;
-          border-radius: 10px;
-          border-left: 4px solid var(--primary-blue);
-
-          h4 {
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-          }
-
-          p {
-            color: var(--text-white);
-            margin: 0;
-          }
         }
       }
 
