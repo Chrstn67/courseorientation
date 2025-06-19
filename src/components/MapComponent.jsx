@@ -455,10 +455,7 @@ export default function MapComponent({
             <span className="legend-marker current">🎯</span>
             <span>Mission Active {!showMapHint && "(Position cachée)"}</span>
           </div>
-          <div className="legend-item">
-            <span className="legend-marker available">📡</span>
-            <span>Objectif Identifié</span>
-          </div>
+
           <div className="legend-item">
             <span className="legend-marker user">👤</span>
             <span>Votre Position</span>
