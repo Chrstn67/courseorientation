@@ -40,12 +40,6 @@ export default function GameHeader({
               <span className="status-dot active"></span>
               <span className="status-text">SYSTÈME ACTIF</span>
             </div>
-            {agentName && (
-              <div className="current-agent">
-                <span className="agent-prefix">AGENT:</span>
-                <span className="agent-code">{agentName}</span>
-              </div>
-            )}
           </div>
         </div>
       </div>

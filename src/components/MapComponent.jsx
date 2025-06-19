@@ -206,6 +206,19 @@ export default function MapComponent({
               }
             ).addTo(mapInstanceRef.current);
 
+            // Ajouter l'event listener pour les popups
+            mapInstanceRef.current.on("popupopen", (e) => {
+              const popup = e.popup;
+              const popupElement = popup.getElement();
+              const closeBtn = popupElement.querySelector(".popup-close-btn");
+
+              if (closeBtn) {
+                closeBtn.addEventListener("click", () => {
+                  mapInstanceRef.current.closePopup(popup);
+                });
+              }
+            });
+
             mapInstanceRef.current.on("moveend", () => {
               const mapCenter = mapInstanceRef.current.getCenter();
               setMapCoordinates([mapCenter.lat, mapCenter.lng]);
@@ -257,36 +270,49 @@ export default function MapComponent({
                 iconAnchor: [20, 20],
               });
 
+              const popupContent = `
+  <div class="spy-popup">
+    <div class="popup-header">
+      <button class="popup-close-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <h3>${mission.codeName}</h3>
+      <span class="classification">${mission.classification}</span>
+    </div>
+    <div class="popup-content">
+      <p><strong>Cible:</strong> ${mission.locationName}</p>
+      <p><strong>Objectif:</strong> ${mission.missionObjective}</p>
+      ${
+        userPosition && (isCurrentMission || isCompleted)
+          ? `<p><strong>Distance:</strong> ${Math.round(
+              calculateDistance(
+                userPosition[0],
+                userPosition[1],
+                mission.coordinates[0],
+                mission.coordinates[1]
+              )
+            )}m</p>`
+          : ""
+      }
+    </div>
+  </div>
+`;
+
               const marker = L.marker(mission.coordinates, {
                 icon: customIcon,
-              }).addTo(mapInstanceRef.current).bindPopup(`
-                  <div class="spy-popup">
-                    <div class="popup-header">
-                      <h3>${mission.codeName}</h3>
-                      <span class="classification">${
-                        mission.classification
-                      }</span>
-                    </div>
-                    <div class="popup-content">
-                      <p><strong>Cible:</strong> ${mission.locationName}</p>
-                      <p><strong>Objectif:</strong> ${
-                        mission.missionObjective
-                      }</p>
-                      ${
-                        userPosition && (isCurrentMission || isCompleted)
-                          ? `<p><strong>Distance:</strong> ${Math.round(
-                              calculateDistance(
-                                userPosition[0],
-                                userPosition[1],
-                                mission.coordinates[0],
-                                mission.coordinates[1]
-                              )
-                            )}m</p>`
-                          : ""
-                      }
-                    </div>
-                  </div>
-                `);
+              })
+                .addTo(mapInstanceRef.current)
+                .bindPopup(popupContent, {
+                  closeButton: false,
+                  autoClose: false,
+                  closeOnClick: false,
+                  closeOnEscapeKey: true,
+                  maxWidth: 300,
+                  className: "custom-popup",
+                });
 
               markersRef.current.push(marker);
             }
@@ -324,26 +350,43 @@ export default function MapComponent({
             iconAnchor: [20, 20],
           });
 
+          const userPopupContent = `
+  <div class="spy-popup">
+    <div class="popup-header">
+      <button class="popup-close-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <h3>VOTRE POSITION</h3>
+      <span class="classification">SÉCURISÉE</span>
+    </div>
+    <div class="popup-content">
+      <p><strong>Statut:</strong> ${locationStatus}</p>
+      <p><strong>Signal:</strong> ${signalStrength.text}</p>
+      ${
+        signalStrength.distance
+          ? `<p><strong>Distance cible:</strong> ${signalStrength.distance}m</p>`
+          : ""
+      }
+    </div>
+  </div>
+`;
+
           userMarkerRef.current = L.marker(userPosition, {
             icon: userIcon,
             zIndexOffset: 1000,
-          }).addTo(mapInstanceRef.current).bindPopup(`
-              <div class="spy-popup">
-                <div class="popup-header">
-                  <h3>VOTRE POSITION</h3>
-                  <span class="classification">SÉCURISÉE</span>
-                </div>
-                <div class="popup-content">
-                  <p><strong>Statut:</strong> ${locationStatus}</p>
-                  <p><strong>Signal:</strong> ${signalStrength.text}</p>
-                  ${
-                    signalStrength.distance
-                      ? `<p><strong>Distance cible:</strong> ${signalStrength.distance}m</p>`
-                      : ""
-                  }
-                </div>
-              </div>
-            `);
+          })
+            .addTo(mapInstanceRef.current)
+            .bindPopup(userPopupContent, {
+              closeButton: false,
+              autoClose: false,
+              closeOnClick: false,
+              closeOnEscapeKey: true,
+              maxWidth: 300,
+              className: "custom-popup",
+            });
 
           markersRef.current.push(userMarkerRef.current);
         } catch (error) {

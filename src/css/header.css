@@ -164,23 +164,6 @@
             color: var(--text-gray);
           }
         }
-
-        .current-agent {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-
-          .agent-prefix {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-          }
-
-          .agent-code {
-            font-weight: bold;
-            color: var(--primary-green);
-            font-size: 1rem;
-          }
-        }
       }
     }
   }
