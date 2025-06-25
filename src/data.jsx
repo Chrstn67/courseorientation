@@ -5,7 +5,7 @@ export const gameData = {
     gameName: "OPÉRATION SAJ",
     codeName: "MISSION CLASSIFIED",
     description:
-      "🕵️ BIENVENUE AGENTS ! <br />Je suis l'Agent CHP, de l'Agence SAJ ! <br/><br /> Vous avez été enlevés contre votre gré car nous voulons tester votre courage et votre bravour ! <br /><br />Votre mission, si vous l'acceptez, est de vérifier que Molsheim ne soit pas sous une menace imminente. <br />Déchiffrez les codes, infiltrez les lieux secrets, sécurisez le périmètre et accomplissez votre mission avant qu'il ne soit trop tard... <br />Vous ne rentrerez chez vous uniquement si vous arrivez à vous défaire des épreuves concoctées par LEBOSS ! <br /><br />Attention, le temps est compté !<br /> Si vous ne réussissez pas, vous devrez rester avec nous jusqu'à ce que vous puissiez prouver votre valeur ! <br /><br />Une dernière chose : <br /> Si vous éteignez votre écran, votre progression sera fortement altérée... <br/><br /> Et mise à part votre feuille de route que vous avez entre les mains, vous n'aurez pas droit à vos systèmes informatiques portables, à moins que je vous l'y autorise...",
+      "🕵️ BIENVENUE AGENTS ! <br />Je suis l'Agent CHP, de l'Agence SAJ ! <br/><br /> Vous avez été enlevés contre votre gré car nous voulons tester votre courage et votre bravour ! <br /><br />Votre mission, si vous l'acceptez, est de vérifier que Molsheim ne soit pas sous une menace imminente. <br />Déchiffrez les codes, infiltrez les lieux secrets, sécurisez le périmètre et accomplissez votre mission avant qu'il ne soit trop tard... <br />Vous ne rentrerez chez vous uniquement si vous arrivez à vous défaire des épreuves concoctées par LEBOSS ! <br /><br />Attention, le temps est compté !<br />Mais nous avons besoin de forces vives : Ne courrez pas ! Un agent se doit d'être le plus discret possible, ne doit pas attirer l'attention !<br /> Si vous ne réussissez pas, vous devrez rester avec nous jusqu'à ce que vous puissiez prouver votre valeur ! <br /><br />Une dernière chose : <br /> Si vous éteignez votre écran, votre progression sera fortement altérée... <br/><br /> Et mise à part votre feuille de route que vous avez entre les mains, vous n'aurez pas droit à vos systèmes informatiques portables, à moins que je vous l'y autorise...",
     agencyName: "SAJ AGENCY",
     centerCoordinates: [48.54200189313992, 7.492192487839465],
     zoomLevel: 14,
@@ -48,7 +48,7 @@ export const gameData = {
       coverStory: "Porte des Forgerons",
       image: "/placeholder.svg?height=200&width=300",
       missionObjective:
-        "Aucune transmission ennemie ne doit être visible. Profitez-en pour sécuriser la tour !",
+        "Aucune transmission ennemie ne doit être visible. Profitez-en pour sécuriser les alentours !",
       dangerLevel: "MODÉRÉ",
       unlocked: false,
     },
@@ -151,7 +151,7 @@ export const gameData = {
   // Messages et codes secrets
   messages: {
     missionComplete:
-      "Félicitations Agents ! <br /><br />Vous avez réussi votre mission !<br /> Votre bravoure et votre intelligence ont permis de prouver que Molsheim ne court aucun danger. <br /><br />L'Agence vous remercie !",
+      "Félicitations Agents ! <br /><br />Vous avez réussi votre mission !<br /> Votre bravoure et votre intelligence ont permis de prouver que Molsheim ne court aucun danger. <br /><br />L'Agence vous remercie et vous recontactera rapidement pour un contrat !",
     timeUp:
       "⚠️ Le temps est écoulé Agents ! Vous êtes condamnés à rester au sein de l'Agence jusqu'à ce que vous puissiez prouver ce qu'on attend de vous !",
     wrongCode:
