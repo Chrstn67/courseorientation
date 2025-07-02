@@ -5,7 +5,7 @@ export const gameData = {
     gameName: "OPÉRATION SAJ",
     codeName: "MISSION CLASSIFIED",
     description:
-      "🕵️ BIENVENUE AGENTS ! <br />Je suis l'Agent CHP, de l'Agence SAJ ! <br/><br /> Vous avez été enlevés contre votre gré car nous voulons tester votre courage et votre bravour ! <br /><br />Votre mission, si vous l'acceptez, est de vérifier que Molsheim ne soit pas sous une menace imminente. <br />Déchiffrez les codes, infiltrez les lieux secrets, sécurisez le périmètre et accomplissez votre mission avant qu'il ne soit trop tard... <br />Vous ne rentrerez chez vous uniquement si vous arrivez à vous défaire des épreuves concoctées par LEBOSS ! <br /><br />Attention, le temps est compté !<br />Mais nous avons besoin de forces vives : Ne courrez pas ! Un agent se doit d'être le plus discret possible, ne doit pas attirer l'attention !<br /> Si vous ne réussissez pas, vous devrez rester avec nous jusqu'à ce que vous puissiez prouver votre valeur ! <br /><br />Une dernière chose : <br /> Si vous éteignez votre écran, votre progression sera fortement altérée... <br/><br /> Et mise à part votre feuille de route que vous avez entre les mains, vous n'aurez pas droit à vos systèmes informatiques portables, à moins que je vous l'y autorise...",
+      "🕵️ BIENVENUE AGENTS ! <br />Je suis l'Agent CHP, de l'Agence SAJ ! <br/><br /> Vous avez été enlevés contre votre gré car nous voulons tester votre courage et votre bravoure ! <br /><br />Votre mission, si vous l'acceptez, est de vérifier que Molsheim ne soit pas sous une menace imminente. <br />Déchiffrez les codes, infiltrez les lieux secrets, sécurisez le périmètre et accomplissez votre mission avant qu'il ne soit trop tard... <br />Vous ne rentrerez chez vous uniquement si vous arrivez à vous défaire des épreuves concoctées par l'Agent LEBOSS ! <br /><br />Attention, le temps est compté !<br />Mais nous avons besoin de forces vives...<br /><br /> Ne courez pas !<br /> Un agent se doit d'être le plus discret possible, ne doit pas attirer l'attention !<br /> Si vous ne réussissez pas, vous devrez rester avec nous jusqu'à ce que vous puissiez prouver votre valeur ! <br /><br />Une dernière chose : <br /> Si vous éteignez votre écran, votre progression sera fortement altérée... <br/><br /> Et mise à part votre feuille de route que vous avez entre les mains, vous n'aurez pas droit à vos systèmes informatiques portables, à moins que je vous l'y autorise, selon mon humeur...",
     agencyName: "SAJ AGENCY",
     centerCoordinates: [48.54200189313992, 7.492192487839465],
     zoomLevel: 14,
@@ -75,7 +75,7 @@ export const gameData = {
       codeName: "OPERATION CROSSROADS",
       classification: "SECRET DÉFENSE",
       briefing:
-        "Le point de rencontre de tous les réseaux d'espionnage. C'est ici que les agents échangent des informations vitales. Allez vérifier que personne se s'y trouve ! EN SILENCE !",
+        "Le point de rencontre de tous les réseaux d'espionnage. C'est ici que les agents échangent des informations vitales. Allez vérifier que personne de suspect ne s'y trouve ! EN SILENCE !",
       encryptedMessage: "GANTÉ",
 
       hint: "Prenez les lettres à l'envers",
@@ -94,7 +94,7 @@ export const gameData = {
       codeName: "OPERATION INVISIBLE",
       classification: "SECRET D'ÉTAT",
       briefing:
-        "Il parait qu'il y a un second point de rendez-vous, au cas où... Vite ! Allez vérifier que personne ne s'y trouve ! Sans courrir, on risquerait de vous soupçonner d'on ne sait trop quoi... Vous êtes agents secrets !",
+        "Il parait qu'il y a un second point de rendez-vous, au cas où... Vite ! Allez vérifier que personne de suspect ne s'y trouve ! Sans courir, car on risquerait de vous soupçonner d'on ne sait trop quoi... Vous êtes agents secrets !",
       encryptedMessage: "CSPOAEADRUNSTRE",
 
       hint: "Remettez les lettres dans l'ordre",
@@ -111,39 +111,58 @@ export const gameData = {
     {
       id: 6,
       codeName: "OPERATION HOMECOMING",
-      classification: "MISSION FINALE",
+      classification: "MISSION QUARTER",
       briefing:
         "Votre base secrète vous attend. C'est ici que tout a commencé.",
       encryptedMessage: "HKYWH FQAJHO",
 
-      hint: "Reculez de 4 positions dans l'alphabet pour chaque lettre...",
-      solution: "LOCAL JEUNES",
       coordinates: [48.54251425321889, 7.492476744544179],
       locationName: "QG Central Echo Alpha",
       coverStory: "Local Jeunes",
+      hint: "Reculez de 4 positions dans l'alphabet pour chaque lettre...",
+      solution: "LOCAL JEUNES",
       image: "/placeholder.svg?height=200&width=300",
       missionObjective:
         "Mission accomplie ! Débriefing complet et extraction sécurisée",
       dangerLevel: "CRITIQUE",
       unlocked: false,
     },
+
     {
       id: 7,
       codeName: "OPERATION DÉMASQUAGE",
-      classification: "MISSION FINALE",
+      classification: "MISSION DEMI-FINALE",
       briefing: "Qui est vraiment LEBOSS qui vous teste ?",
       encryptedMessage:
         ".. .-.. / . ... - / -.. . ...- .- -. - / ...- --- ..- ... / -.-.--",
 
-      hint: "C'est du morse... Et attention à un petit-quelque-chose",
+      hint: "C'est du morse... Et n'oubliez pas une ponctuation...",
       solution: "IL EST DEVANT VOUS !",
-      coordinates: [48.54209875858177, 7.498920800855797],
-      locationName: "QG Central Echo Beta",
-      coverStory: "Gymnase Hossenlopp",
+
+      coordinates: [48.54251425321889, 7.492476744544179],
+      locationName: "QG Central Echo Alpha",
+      coverStory: "Local Jeunes",
+      image: "/placeholder.svg?height=200&width=300",
+      missionObjective: "Mission (presque) accomplie !",
+      dangerLevel: "VITALE",
+      unlocked: false,
+    },
+    {
+      id: 8,
+      codeName: "OPERATION AWARD",
+      classification: "MISSION DESSERT",
+      briefing: "On vous doit une fière chandelle...",
+      encryptedMessage: "2(400 x 83) + (9 x 8 x (1000/100))",
+
+      hint: "Priorisez...",
+      solution: "67120",
+      coordinates: [48.54251425321889, 7.492476744544179],
+      locationName: "QG Central Echo Alpha",
+      coverStory: "Local Jeunes",
       image: "/placeholder.svg?height=200&width=300",
       missionObjective:
-        "Mission accomplie ! Débriefing complet et extraction sécurisée",
-      dangerLevel: "VITALE",
+        "MISSION TOTALE ! Débriefing complet et extraction sécurisée",
+      dangerLevel: "FAIBLE",
       unlocked: false,
     },
   ],
